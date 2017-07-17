@@ -52,7 +52,10 @@ java -jar weathersimulation.jar -a ~/Desktop/test/config/weatherinfo.properties
 
 **Note:** The date format is yyyy-M-d, for eg. 2016-11-5
 
-
+##### Main class
+```ruby
+com.tcs.cba.weathersimulation.process.impl.WeatherDataSimulator
+```
 ##### Dataset Considered
 
 Historical weather data between 2005 and 2015 (both years inclusive) for 4 locations listed below:
