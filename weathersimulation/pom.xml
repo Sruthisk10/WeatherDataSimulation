@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.tcs.cba</groupId>
+	<artifactId>weathersimulation</artifactId>
+	<version>0.0.1</version>
+	<name>weathersimulation</name>
+	<description>A model that predicts various factors of weather at various locations based on historical information.</description>
+	<properties>
+		<maven.compiler-plugin.version>3.5.1</maven.compiler-plugin.version>
+		<maven.assembly-pliugin.version>2.6</maven.assembly-pliugin.version>
+		<junit.version>4.12</junit.version>
+		<log4j.version>1.2.17</log4j.version>
+		<java.version>1.7</java.version>
+	</properties>
+	<dependencies>
+		<!-- JUnit is a unit testing framework for Java-->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Log4j is one of several Java logging frameworks from Apache package. -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<!-- Maven Compiler: compiles source files. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<!-- Maven Assembly: creates archives of project's source files, classes, dependencies etc. from flexible assembly descriptors. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>${maven.assembly-pliugin.version}</version>
+				<configuration>
+					<!-- fetches all project dependencies -->
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<finalName>weathersimulation</finalName>
+       				<appendAssemblyId>false</appendAssemblyId>
+					<!-- The class is added to the "Main-Class" attribute in the manifest file while making an executable jar -->
+					<archive>
+						<manifest>
+							<mainClass>com.tcs.cba.weathersimulation.process.impl.weathersimulation</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<!-- binds to the package phase -->
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- plugin to create java classes from xsd -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>2.2</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sources>
+						<source>src/main/resources/config/weatherstationsinfo.xsd</source>
+					</sources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
