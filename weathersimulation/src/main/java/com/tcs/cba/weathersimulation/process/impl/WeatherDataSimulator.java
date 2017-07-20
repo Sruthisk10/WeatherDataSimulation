@@ -27,16 +27,19 @@
  */ 
 package com.tcs.cba.weathersimulation.process.impl;
 
-import com.tcs.cba.weathersimulation.jaxb.WeatherStation;
-import com.tcs.cba.weathersimulation.utils.Constants;
-import com.tcs.cba.weathersimulation.utils.Util;
+import static com.tcs.cba.weathersimulation.utils.Constants.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import static com.tcs.cba.weathersimulation.utils.Constants.loadProperties;
+
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.ParseException;
+
+import com.tcs.cba.weathersimulation.jaxb.WeatherStation;
+import com.tcs.cba.weathersimulation.utils.Util;
 
 /**
  * WeatherDataSimulator is the main class of the application. This class invokes the processing
@@ -49,25 +52,20 @@ import static com.tcs.cba.weathersimulation.utils.Constants.loadProperties;
  * @author Sruthi Sasikumar
  */
 public class WeatherDataSimulator {
-    public static void main(String[] args)  throws FileNotFoundException, IOException {
+    public static void main(String[] args)  throws FileNotFoundException, IOException, ParseException {
 
         ExecutorService executorService = null;
-        String mode = args[0];
-        String propertiesPath = args[1];
-        String startDate = null;
-        String endDate = null;
+        // obtaining command line arguments.
+        CommandLine cli = Util.getArguments(args);
+        String mode = cli.getOptionValue('m');
+        String propertiesPath = cli.getOptionValue('c');
+        String startDate = cli.getOptionValue('s');
+        String endDate = cli.getOptionValue('e');
 
         // loading properties file.
         loadProperties(propertiesPath);
-
-        if (args.length > 2) {
-            startDate = args[2];
-        }
-        if (args.length > 3) {
-            endDate = args[3];
-        }
         try {
-            List<WeatherStation> weatherStations = Util.loadLocationSettings(Constants.CONFIG_LOCATION);
+            List<WeatherStation> weatherStations = Util.loadLocationSettings(CONFIG_LOCATION);
             if (weatherStations != null && weatherStations.size() > 0) {
                 executorService = Executors.newFixedThreadPool(weatherStations.size());
                 for (WeatherStation weatherStation : weatherStations) {
@@ -80,4 +78,6 @@ public class WeatherDataSimulator {
             executorService.shutdown();
         }
     }
+    
+   
 }

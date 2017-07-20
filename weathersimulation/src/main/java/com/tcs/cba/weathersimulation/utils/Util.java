@@ -34,6 +34,13 @@ import com.tcs.cba.weathersimulation.jaxb.WeatherStations;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+
+import org.apache.commons.cli.BasicParser;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+
 import java.io.File;
 import java.util.List;
 
@@ -113,5 +120,32 @@ public class Util {
         }
     }
 
+    /**
+     * Reads and maps the arguments to the options prescribed.
+     * @param args
+     * @throws ParseException
+     */
+    public static CommandLine getArguments(String args[]) throws ParseException {
+    	final CommandLineParser parser = new BasicParser();
+	    final Options options = new Options();
+	    options.addOption("m", "mode", true, "mode of execution all(-a), range(-r) or date(-d)");
+	    options.addOption("c", "config", true, "properties file location");
+	    options.addOption("s", "startdate", true, "starting date for weather prediction");
+	    options.addOption("e", "enddate", true, "ending date for weather prediction");
+	    
+	    return parser.parse(options, args);
+    }
+    
+    /**
+     * Fetches the equivalent value for a particular option.
+     * @return value of option
+     */
+    public static String getOption(final char option, final CommandLine commandLine) {
 
+	    if (commandLine.hasOption(option)) {
+	        return commandLine.getOptionValue(option);
+	    }
+
+	    return Constants.EMPTY_STRING;
+	}
 }

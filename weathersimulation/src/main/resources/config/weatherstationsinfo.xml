@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <weatherStations>
 	<weatherStation statName="Sydney" statCode="SYD" countryCode="AU" location="-33.86,151.21" altitude="39">
-		<weatherData loc="C:\Users\lenovo\Desktop\sruthi\EclipseWorkspace\weathersimulation\src\main\resources\input\Sydney" />
+		<weatherData loc="C:\Users\lenovo\git\WeatherDataSimulation\weathersimulation\src\main\resources\input\Sydney" />
 	</weatherStation>
 	<weatherStation statName="Melbourne" statCode="MEL" countryCode="AU" location="-37.83,144.98" altitude="7">
-		<weatherData loc="C:\Users\lenovo\Desktop\sruthi\EclipseWorkspace\weathersimulation\src\main\resources\input\Melbourne" />
+		<weatherData loc="C:\Users\lenovo\git\WeatherDataSimulation\weathersimulation\src\main\resources\input\Melbourne" />
 	</weatherStation>
 	<weatherStation statName="Brisbane" statCode="BRS" countryCode="AU" location="-27.47,153.02" altitude="27">
-		<weatherData loc="C:\Users\lenovo\Desktop\sruthi\EclipseWorkspace\weathersimulation\src\main\resources\input\Brisbane" />
+		<weatherData loc="C:\Users\lenovo\git\WeatherDataSimulation\weathersimulation\src\main\resources\input\Brisbane" />
 	</weatherStation>
 	<weatherStation statName="Adelaide" statCode="ADL" countryCode="AU" location="-34.92,138.62" altitude="48">
-		<weatherData loc="C:\Users\lenovo\Desktop\sruthi\EclipseWorkspace\weathersimulation\src\main\resources\input\Adelaide" />
+		<weatherData loc="C:\Users\lenovo\git\WeatherDataSimulation\weathersimulation\src\main\resources\input\Adelaide" />
 	</weatherStation>
 </weatherStations>

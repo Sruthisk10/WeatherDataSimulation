@@ -34,15 +34,17 @@ import java.util.Properties;
 
 public class Constants {
 
+	public static final String EMPTY_STRING = "";
+	
     public static final String COMMA = ",";
 
     public static final String PIPE_DELIMITER = "|";
 
-    public static final String FORECAST_DATE = "-d";
+    public static final String FORECAST_DATE = "date";
 
-    public static final String FORECAST_DATE_RANGE = "-r";
+    public static final String FORECAST_DATE_RANGE = "range";
 
-    public static final String FORECAST_ALL_FUTURE_DATES = "-a";
+    public static final String FORECAST_ALL_FUTURE_DATES = "all";
 
     public static final String INPUT_DATE_PATTERN = "yyyy-M-d";
 

@@ -20,7 +20,7 @@ To run the application java 1.7 or version above needs to be installed in the ma
 
 > weathersimulation.jar
 
-A versioned jar with a similar name would be found in the target folder which does not have the Main Class preset.
+After importing the project and building using maven, a versioned jar with a similar name would be found in the target folder which does not have the Main Class preset.
 
 ### Execution Procedure
 ##### Modes
@@ -28,27 +28,35 @@ A versioned jar with a similar name would be found in the target folder which do
 This module works in 3 modes:
 
 
-* -a => Forecasting for all future dates including today.
-* -d => Forecasting for a specific date queried for.
-* -r => Forecasting for a range of dates between queried start and end dates.
+* all => Forecasting for all future dates including today.
+* date => Forecasting for a specific date queried for.
+* range => Forecasting for a range of dates between queried start and end dates.
 
 
 ##### Command to Run
 ```ruby
-java -jar weathersimulation.jar <mode> <properties_file_path> [<start_date>] [<end_date>]
+java -jar weathersimulation.jar 
+	-m <mode>
+	-c <properties_file_path>
+	[-s <start_date>] 
+	[-e <end_date>]
 ```
 Eg. below:
 ```ruby
-java -jar weathersimulation.jar -a ~/Desktop/test/config/weatherinfo.properties
+java -jar weathersimulation.jar 
+	-m range
+	-c ~/Desktop/test/config/weatherinfo.properties
+	-s 2017-7-21
+	-e 2017-7-25
 ```
-> 1. mode - Mode parameter
+> 1. mode - Mode parameter has values in [all,date,range]
 > 2. properties_file_path- absolute path of properties file
 > 3. start_date -
->   * for mode -d => specific date to be forecasted
->   * for mode -r => starting date of date range
+>   * for mode date => specific date to be forecasted
+>   * for mode range => starting date of date range
 >
 > 4. end_date -
->   * for mode -r => end date of forecast
+>   * for mode range => end date of forecast
 
 **Note:** The date format is yyyy-M-d, for eg. 2016-11-5
 
